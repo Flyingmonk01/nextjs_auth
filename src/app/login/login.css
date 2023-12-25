@@ -1,0 +1,115 @@
+/* * {
+    border: 2px solid red;
+    background-color: #fff;
+    color: #000;
+} */
+
+#main {
+    position: relative;
+    min-height: 99vh;
+    min-width: 97vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -100;
+    background: url('https://images.pexels.com/photos/3178786/pexels-photo-3178786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center/cover no-repeat;
+    filter: blur(5px);
+}
+
+#login {
+    z-index: 10;
+    position: relative;
+    width: 40%;
+    height: 60vh;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    filter: brightness(150%);
+    box-shadow: 0px 0px 15px #fff;
+}
+
+#login::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -100;
+    background: url('https://images.pexels.com/photos/3178786/pexels-photo-3178786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center/cover no-repeat;
+    filter: blur(30px);
+}
+
+#login>h1 {
+    padding: 0.8rem;
+    font: 500 2rem Fira Code;
+    width: max-content;
+    border-bottom: 2px solid #fff;
+    margin: auto;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 3rem 4rem;
+
+}
+
+.loginForm>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0.6rem;
+    padding: 15px;
+    font: 600 1.3rem sans-serif;
+}
+
+.loginForm>div>input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    margin: 0 8px;
+    font: 400 16px sans-serif;
+    border-bottom: 2px solid rgb(251, 24, 24);
+    width: 100%;
+}
+
+
+.loginForm>button {
+    width: 30%;
+    background-color: brown;
+    padding: 10px;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+
+.loginForm>button:hover {
+    background-color: rgb(216, 52, 52);
+    color: white;
+}
+
+.loginForm > a {
+    text-align: center;
+    width: 30%;
+    padding: 10px;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+.loginForm>a:hover {
+    color: rgb(64, 188, 234);
+}
