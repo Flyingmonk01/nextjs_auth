@@ -2,23 +2,53 @@
 
 import Link from "next/link";
 import "./login.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import axios from "axios";
 
-export default function signUp() {
-  const [user, setUser] = React.useState({
+export default function Login() {
+
+  const router = useRouter();
+
+  const [user, setUser] = useState({
     email:'',
     password:'',
   })
 
+  const [loading, setLoading] = useState(false);
+  const [disabledBtn, setDisabledBtn] = useState(false);
+
   const onLogin = async() =>{
-    console.log("Login")
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/users/login", user);
+      console.log('Login Successfully', response.data);
+      toast.success("Login Success");
+      router.push("/profile");
+    } catch (error: any) {
+      console.log("Login Failed", error.message);
+      toast.error(error.message);
+    }finally{
+      setLoading(false);
+    }
   }
+
+
+  useEffect(()=>{
+    if(user.email.length > 0 && user.password.length > 0){
+      setDisabledBtn(false);
+    }
+    else{
+      setDisabledBtn(true);
+    }
+  }, [user]);
 
   // console.log(user.password)
   return (
     <div id="main">
       <div id="login">
-        <h1>Login </h1>
+        <h1>{loading? "Processing":"Login"}</h1>
         <div className="loginForm">
         <div>
             <label htmlFor="username">Email:</label>
@@ -28,7 +58,7 @@ export default function signUp() {
             <label htmlFor="username">Password:</label>
             <input type="password" placeholder="Enter your password.. " value={user.password} onChange={(e) => setUser({...user, password:e.target.value})}/>
           </div>
-          <button onClick={onLogin}>Login</button>
+          <button onClick={onLogin} style={{cursor:disabledBtn? "not-allowed":"pointer"}} disabled={disabledBtn}>{disabledBtn ? `You can't Login` : "Login"}</button>
           <Link href={'/signup'}>New User</Link>
         </div>
       </div>
